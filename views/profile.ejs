@@ -8,30 +8,30 @@
               <a href="/logout" class="col-3 btn btn-primary">Logout</a>
           </div>
           <div class="mt-5">
-            <h2>Add a post</h2>
-            <form action="/post/createPost" enctype="multipart/form-data" method="POST">
+            <h2>Add a Restaurant</h2>
+            <form action="/restaurant/createRestaurant" enctype="multipart/form-data" method="POST">
               <div class="mb-3">
-                  <label for="title" class="form-label">Title</label>
-                  <input type="text" class="form-control" id="title" name="title">
+                  <label for="restaurantName" class="form-label">Restaurant Name</label>
+                  <input type="text" class="form-control" id="restaurantName" name="restaurantName">
               </div>
               <div class="mb-3">
-                <label for="caption" class="form-label">Caption</label>
-                <textarea class="form-control" id="caption" name="caption"></textarea>
+                <label for="menuUrl" class="form-label">Menu URL</label>
+                <input type="text" class="form-control" id="menuUrl" name="menuUrl">
               </div>
               <div class="mb-3">
-                <label for="imgUpload" class="form-label">Image</label>
-                <input type="file" class="form-control" id="imageUpload" name="file">
-              </div>
-              <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+                <label for="tag" class="form-label">Tag for Type of Restaurant</label>
+                <input type="text" class="form-control" id="tag" name="tag">
+            </div>
+              <button type="submit" class="btn btn-primary" value="Add">Add</button>
             </form>
           </div>
       </div>
       <div class="col-6">
         <ul class="row list-unstyled">
-        <% for(var i=0; i<posts.length; i++) {%>
+        <% for(var i=0; i<restaurants.length; i++) {%>
           <li class="col-6 justify-content-between mt-5">
-            <a href="/post/<%= posts[i]._id%>">
-              <img class="img-fluid" src="<%= posts[i].image%>">
+            <a href="/post/<%= restaurants[i]._id%>">
+              <img class="img-fluid" src="<%= restaurants[i].image%>">
             </a>
           </li>
         <% } %>
