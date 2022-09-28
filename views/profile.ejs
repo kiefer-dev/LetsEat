@@ -9,7 +9,7 @@
           </div>
           <div class="mt-5">
             <h2>Add a Restaurant</h2>
-            <form action="/restaurant/createRestaurant" enctype="multipart/form-data" method="POST">
+            <form action="/restaurants/createRestaurant" method="POST">
               <div class="mb-3">
                   <label for="restaurantName" class="form-label">Restaurant Name</label>
                   <input type="text" class="form-control" id="restaurantName" name="restaurantName">
@@ -30,9 +30,8 @@
         <ul class="row list-unstyled">
         <% for(var i=0; i<restaurants.length; i++) {%>
           <li class="col-6 justify-content-between mt-5">
-            <a href="/post/<%= restaurants[i]._id%>">
-              <img class="img-fluid" src="<%= restaurants[i].image%>">
-            </a>
+            <a href="/restaurant/<%= restaurants[i]._id%>"><%= restaurants[i].restaurantName %></a>
+            <a href="<%= restaurants[i].menuUrl %>" target="_blank">Menu</a>
           </li>
         <% } %>
         </ul>
