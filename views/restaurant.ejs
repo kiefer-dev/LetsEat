@@ -7,7 +7,7 @@
       <div class="row justify-content-between">
         <form
           class="col-1"
-          action="/restaurant/likeRestaurant/<%= restaurant.id %>?_method=PUT"
+          action="/restaurants/likeRestaurant/<%= restaurant.id %>?_method=PUT"
           method="POST"
         >
           <button class="btn btn-primary fa fa-heart" type="submit"></button>
@@ -15,7 +15,7 @@
         <h3 class="col-3">Likes: <%= restaurant.likes %></h3>
         <%if(restaurant.addedBy == user.id){ %>
         <form
-          action="/restaurant/deleteRestaurant/<%= restaurant.id %>?_method=DELETE"
+          action="/restaurants/deleteRestaurant/<%= restaurant.id %>?_method=DELETE"
           method="POST"
           class="col-3"
         >

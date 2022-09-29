@@ -28,6 +28,7 @@ module.exports = {
   createRestaurant: async (req, res) => {
     try {
       console.log(req.body);
+
       await Restaurant.create({
         restaurantName: req.body.restaurantName,
         menuUrl: req.body.menuUrl,

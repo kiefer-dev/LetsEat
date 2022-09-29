@@ -12,11 +12,11 @@
             <form action="/restaurants/createRestaurant" method="POST">
               <div class="mb-3">
                   <label for="restaurantName" class="form-label">Restaurant Name</label>
-                  <input type="text" class="form-control" id="restaurantName" name="restaurantName">
+                  <input type="text" class="form-control" id="restaurantName" name="restaurantName" required>
               </div>
               <div class="mb-3">
                 <label for="menuUrl" class="form-label">Menu URL</label>
-                <input type="text" class="form-control" id="menuUrl" name="menuUrl">
+                <input type="text" class="form-control" id="menuUrl" name="menuUrl" required>
               </div>
               <div class="mb-3">
                 <label for="tag" class="form-label">Tag for Type of Restaurant</label>
@@ -30,7 +30,7 @@
         <ul class="row list-unstyled">
         <% for(var i=0; i<restaurants.length; i++) {%>
           <li class="col-6 justify-content-between mt-5">
-            <a href="/restaurant/<%= restaurants[i]._id%>"><%= restaurants[i].restaurantName %></a>
+            <a href="/restaurants/<%= restaurants[i]._id%>"><%= restaurants[i].restaurantName %></a>
             <a href="<%= restaurants[i].menuUrl %>" target="_blank">Menu</a>
           </li>
         <% } %>

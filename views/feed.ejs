@@ -4,9 +4,7 @@
       <ul class="row list-unstyled">
         <% for(var i=0; i<restaurants.length; i++) {%>
           <li class="col-6 justify-content-between mt-5">
-            <a href="/post/<%= restaurants[i]._id%>">
-              <img class="img-fluid" src="<%= restaurants[i].image%>">
-            </a>
+            <a href="/restaurants/<%= restaurants[i]._id%>"> <%= restaurants[i].restaurantName %> </a>
           </li>
         <% } %>
         </ul>
