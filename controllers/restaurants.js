@@ -1,4 +1,5 @@
 const Restaurant = require("../models/Restaurant");
+const Comment = require("../models/Comment")
 
 module.exports = {
   getProfile: async (req, res) => {
@@ -20,7 +21,8 @@ module.exports = {
   getRestaurant: async (req, res) => {
     try {
       const restaurant = await Restaurant.findById(req.params.id);
-      res.render("restaurant.ejs", { restaurant: restaurant, user: req.user });
+      const comments = await Comment.find({ restaurantId: req.params.id }).sort({ createdAt: "desc" }).lean();
+      res.render("restaurant.ejs", { restaurant: restaurant, user: req.user, comments: comments });
     } catch (err) {
       console.log(err);
     }
@@ -57,10 +59,9 @@ module.exports = {
   // },
   deleteRestaurant: async (req, res) => {
     try {
-      // Find by id
-      let restaurant = await Restaurant.findById({ _id: req.params.id });
       // Delete from db
-      await Restaurant.remove({ _id: req.params.id });
+      await Restaurant.deleteOne({ _id: req.params.id });
+      await Comment.deleteMany({ restaurantId: req.params.id });
       console.log("Deleted Restaurant");
       res.redirect("/profile");
     } catch (err) {
