@@ -1,11 +1,11 @@
 const Restaurant = require("../models/Restaurant");
-const Comment = require("../models/Comment")
+const RestaurantComment = require("../models/RestaurantComment")
 
 module.exports = {
   createComment: async (req, res) => {
     try {
-      await Comment.create({
-        comment: req.body.comment,
+      await RestaurantComment.create({
+        comment: req.body.restaurantComment,
         restaurantId: req.params.id,
         addedBy: req.user.userName,
         addedById: req.user.id, // The logged-in user's information is sent along with the request. Here, we're pulling their id and attaching it to the comment to store it in the db.
@@ -19,7 +19,7 @@ module.exports = {
   deleteComment: async (req, res) => {
     try {
       // Delete the comment from MongoDB using mongoose
-      await Comment.deleteOne({ _id: req.params.commentId }); // Looking for the _id property that matches the clicked comment's commentid, sent up from the view.
+      await RestaurantComment.deleteOne({ _id: req.params.restaurantCommentId }); // Looking for the _id property that matches the clicked comment's commentid, sent up from the view.
 
       // Reload the page
       res.redirect(`/restaurants/${req.params.restaurantId}`);

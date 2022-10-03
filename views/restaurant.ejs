@@ -30,21 +30,21 @@
 
     <div class="mt-5">
       <h2>Add a comment</h2>
-      <form action="/comment/createComment/<%=restaurant._id%>" method="POST">
+      <form action="/restaurantComment/createComment/<%=restaurant._id%>" method="POST">
         <div class="mb-3">
           <label for="title" class="form-label">Comment</label>
-          <input type="text" class="form-control" id="comment" name="comment">
+          <input type="text" class="form-control" id="restaurantComment" name="restaurantComment">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
     <div class="mt-5">
       <ul>
-        <% for(var i=0; i<comments.length; i++) {%>
+        <% for(var i=0; i<restaurantComments.length; i++) {%>
           <li class="col-6 justify-content-between mt-5">
-            <%= comments[i].addedBy %> says: "<%= comments[i].comment%>"
-            <% if (comments[i].addedById == user.id) { %>
-              <form action="/comment/deleteComment/<%=restaurant.id%>/<%=comments[i]._id%>?_method=DELETE" method="POST" class="col-3">
+            <%= restaurantComments[i].addedBy %> says: "<%= restaurantComments[i].comment%>"
+            <% if (restaurantComments[i].addedById == user.id) { %>
+              <form action="/restaurantComment/deleteComment/<%=restaurant.id%>/<%=restaurantComments[i]._id%>?_method=DELETE" method="POST" class="col-3">
                 <button class="btn btn-outline-danger" type="submit">Delete</button>
               </form>
             <% } %>
