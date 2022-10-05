@@ -3,19 +3,20 @@
   <div class="row justify-content-center mt-5">
     <div class="col-6">
       <h2><%= restaurant.restaurantName %></h2>
+      <h3><%= menuitem.item %></h3>
       <img class="img-fluid" src="<%= restaurant.image%>" />
       <div class="row justify-content-between">
-        <form
+        <!-- <form
           class="col-1"
           action="/restaurants/likeRestaurant/<%= restaurant.id %>?_method=PUT"
           method="POST"
         >
           <button class="btn btn-primary fa fa-heart" type="submit"></button>
         </form>
-        <h3 class="col-3">Likes: <%= restaurant.likes %></h3>
-        <%if(restaurant.addedBy == user.id){ %>
+        <h3 class="col-3">Likes: <%= restaurant.likes %></h3> -->
+        <%if(menuitem.addedById == user.id){ %>
         <form
-          action="/restaurants/deleteRestaurant/<%= restaurant.id %>?_method=DELETE"
+          action="/menuitems/deleteMenuitem/<%= menuitem.id %>?_method=DELETE"
           method="POST"
           class="col-3"
         >
@@ -24,42 +25,12 @@
         <%}%>
       </div>
     </div>
-    <div class="col-3 mt-5">
-      <p><%= restaurant.restaurantName %></p>
-    </div>
 
-    <!-- Section to add a Menuitem to this specific restaurant -->
-    <div class="mt-5">
-      <h2>Add a Menu Item</h2>
-      <form action="/menuitems/createMenuitem/<%=restaurant._id%>" method="POST">
-        <div class="mb-3">
-          <label for="item" class="form-label">Did you order something from the menu? Add it here!</label>
-          <input type="text" class="form-control" id="item" name="item">
-        </div>
-        <button type="submit" class="btn btn-primary">Add</button>
-      </form>
-    </div>
-    <div class="mt-5">
-      <ul>
-        <% for(var i=0; i<menuitems.length; i++) {%>
-          <li class="col-6 justify-content-between mt-5">
-            <%= menuitems[i].addedBy %> ordered "<%= menuitems[i].item%>"
-            <% if (menuitems[i].addedById == user.id) { %>
-              <form action="/menuitems/deleteMenuitem/<%=restaurant.id%>/<%=menuitems[i]._id%>?_method=DELETE" method="POST" class="col-3">
-                <button class="btn btn-outline-danger" type="submit">Delete</button>
-              </form>
-            <% } %>
-          </li>
-          <% } %>
-      </ul>
-    </div>
-
-    <!-- Section to add a comment to this specific restaurant -->
-    <div class="mt-5">
+    <!-- <div class="mt-5">
       <h2>Add a comment</h2>
       <form action="/restaurantComments/createComment/<%=restaurant._id%>" method="POST">
         <div class="mb-3">
-          <label for="restaurantComment" class="form-label">Comment</label>
+          <label for="title" class="form-label">Comment</label>
           <input type="text" class="form-control" id="restaurantComment" name="restaurantComment">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -78,9 +49,7 @@
           </li>
           <% } %>
       </ul>
-    </div>
-
-    
+    </div> -->
 
     <div class="col-6 mt-5">
       <a class="btn btn-primary" href="/profile">Return to Profile</a>
