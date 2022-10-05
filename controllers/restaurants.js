@@ -37,7 +37,8 @@ module.exports = {
         restaurantName: req.body.restaurantName,
         menuUrl: req.body.menuUrl,
         tag: req.body.tag,
-        addedBy: req.user.id,
+        addedBy: req.user.userName,
+        addedById: req.user.id
       });
       console.log("Restaurant has been added!");
       res.redirect("/profile");
