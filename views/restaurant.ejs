@@ -34,16 +34,33 @@
       <form action="/menuitems/createMenuitem/<%=restaurant._id%>" method="POST">
         <div class="mb-3">
           <label for="item" class="form-label">Did you order something from the menu? Add it here!</label>
-          <input type="text" class="form-control" id="item" name="item">
+          <input type="text" class="form-control" id="item" name="item" placeholder="What'd you get?" required>
+          <label for="itemRating">Rating:</label>
+          <select name="itemRating" id="itemRating">
+            <option value="1">1</option>
+            <option value="1.5">1.5</option>
+            <option value="2">2</option>
+            <option value="2.5">2.5</option>
+            <option value="3">3</option>
+            <option value="3.5">3.5</option>
+            <option value="4">4</option>
+            <option value="4.5">4.5</option>
+            <option value="5">5</option>
+          </select>
+          <input type="text" class="form-control" id="itemComment" name="itemComment" placeholder="What'd you think about it?">
         </div>
         <button type="submit" class="btn btn-primary">Add</button>
       </form>
     </div>
+    <!-- Section to display menu items for this specific restaurant -->
     <div class="mt-5">
       <ul>
         <% for(var i=0; i<menuitems.length; i++) {%>
           <li class="col-6 justify-content-between mt-5">
-            <%= menuitems[i].addedBy %> ordered "<%= menuitems[i].item%>"
+            <h6><%= menuitems[i].addedBy %> ordered "<%= menuitems[i].item%>" and rated it <%= menuitems[i].itemRating %>/5 stars.</h6>
+            <% if (menuitems[i].itemComment) { %>
+              <span>"<%= menuitems[i].itemComment %>"</span>
+            <% } %>
             <% if (menuitems[i].addedById == user.id) { %>
               <form action="/menuitems/deleteMenuitem/<%=restaurant.id%>/<%=menuitems[i]._id%>?_method=DELETE" method="POST" class="col-3">
                 <button class="btn btn-outline-danger" type="submit">Delete</button>

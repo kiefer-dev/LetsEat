@@ -16,6 +16,8 @@ module.exports = {
         try {
             await Menuitem.create({
                 item: req.body.item,
+                itemComment: req.body.itemComment,
+                itemRating: req.body.itemRating,
                 restaurantId: req.params.id,
                 addedBy: req.user.userName,
                 addedById: req.user.id, // The logged-in user's information is sent along with the request. Here, we're pulling their id and attaching it to the comment to store it in the db.
