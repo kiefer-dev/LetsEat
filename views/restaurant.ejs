@@ -1,109 +1,121 @@
 <%- include('partials/header') -%>
-<div class="container">
-  <div class="row justify-content-center mt-5">
-    <div class="col-6">
-      <h2><%= restaurant.restaurantName %></h2>
-      <img class="img-fluid" src="<%= restaurant.image%>" />
-      <div class="row justify-content-between">
-        <form
-          class="col-1"
-          action="/restaurants/likeRestaurant/<%= restaurant.id %>?_method=PUT"
-          method="POST"
-        >
-          <button class="btn btn-primary fa fa-heart" type="submit"></button>
-        </form>
-        <h3 class="col-3">Likes: <%= restaurant.likes %></h3>
-        <%if(restaurant.addedBy == user.id){ %>
-        <form
-          action="/restaurants/deleteRestaurant/<%= restaurant.id %>?_method=DELETE"
-          method="POST"
-          class="col-3"
-        >
-          <button class="btn btn-primary fa fa-trash" type="submit"></button>
-        </form>
-        <%}%>
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="flex gap-4 grow">
+        <div class="flex gap-2 basis-1/6">
+          <div>
+            <h2>
+              <%= restaurant.restaurantName %>
+            </h2>
+            <h2>Added by <%= restaurant.addedBy %>
+            </h2>
+          </div>
+          <%if(restaurant.addedById==user.id){ %>
+            <form action="/restaurants/deleteRestaurant/<%= restaurant.id %>?_method=DELETE" method="POST"
+              class="col-3">
+              <button class="btn btn-accent fa fa-trash" type="submit"></button>
+            </form>
+            <%}%>
+        </div>
+
+        <!-- Section to add a comment to this specific restaurant -->
+        <div class="flex flex-col basis-3/6">
+          <div>
+            <form action="/restaurantComments/createComment/<%=restaurant._id%>" method="POST">
+              <input type="text" placeholder="How was <%=restaurant.restaurantName%>?" class="input w-full max-w-xs"
+                id="restaurantComment" name="restaurantComment" />
+              <button class="btn btn-secondary" type="submit">Post</button>
+            </form>
+            <!-- Section to display comments about this specific restaurant -->
+            <div class="mt-5">
+              <ul>
+
+                <% for(var i=0; i<restaurantComments.length; i++) {%>
+                  <li class="col-6 justify-content-between mt-5">
+                    <%= restaurantComments[i].addedBy %>: "<%= restaurantComments[i].comment%>"
+                        <% if (restaurantComments[i].addedById==user.id) { %>
+                          <form
+                            action="/restaurantComments/deleteComment/<%=restaurant.id%>/<%=restaurantComments[i]._id%>?_method=DELETE"
+                            method="POST" class="col-3">
+                            <button type="submit" class="btn btn-link">delete</button>
+                          </form>
+                          <% } %>
+                  </li>
+                  <% } %>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section to add a Menuitem to this specific restaurant -->
+        <div class="flex flex-column basis-2/6">
+          <div>
+            <h2>Add a Menu Item</h2>
+            <form action="/menuitems/createMenuitem/<%=restaurant._id%>" method="POST">
+              <div class="mb-3">
+                <label for="item" class="form-label">Did you order something from the menu? Add it here!</label>
+                <input type="text" class="form-control" id="item" name="item" placeholder="What'd you get?" required>
+                <input type="text" class="form-control" id="itemComment" name="itemComment"
+                  placeholder="What'd you think about it?">
+
+                <div class="flex">
+                  <div class="rating rating-lg rating-half">
+                    <input type="radio" name="itemRating" class="rating-hidden" value="0.5" />
+                    <input type="radio" name="itemRating" class="bg-green-500 mask mask-star-2 mask-half-1"
+                      value="0.5" />
+                    <input type="radio" name="itemRating" class="bg-green-500 mask mask-star-2 mask-half-2"
+                      value="1.0" />
+                    <input type="radio" name="itemRating" class="bg-green-500 mask mask-star-2 mask-half-1"
+                      value="1.5" />
+                    <input type="radio" name="itemRating" class="bg-green-500 mask mask-star-2 mask-half-2"
+                      value="2.0" />
+                    <input type="radio" name="itemRating" class="bg-green-500 mask mask-star-2 mask-half-1"
+                      value="2.5" />
+                    <input type="radio" name="itemRating" class="bg-green-500 mask mask-star-2 mask-half-2"
+                      value="3.0" />
+                    <input type="radio" name="itemRating" class="bg-green-500 mask mask-star-2 mask-half-1"
+                      value="3.5" />
+                    <input type="radio" name="itemRating" class="bg-green-500 mask mask-star-2 mask-half-2"
+                      value="4.0" />
+                    <input type="radio" name="itemRating" class="bg-green-500 mask mask-star-2 mask-half-1"
+                      value="4.5" />
+                    <input type="radio" name="itemRating" class="bg-green-500 mask mask-star-2 mask-half-2" value="5.0"
+                      checked />
+                  </div>
+
+                </div>
+                <button type="submit" class="btn btn-secondary">Add</button>
+              </div>
+            </form>
+          </div>
+          <!-- Section to display menu items for this specific restaurant -->
+          <div class="mt-5">
+            <ul>
+              <% for(var i=0; i<menuitems.length; i++) {%>
+                <li class="col-6 justify-content-between mt-5">
+                  <h6>
+                    <%= menuitems[i].addedBy %> ordered "<%= menuitems[i].item%>" and rated it <%=
+                          menuitems[i].itemRating %>/5 stars.
+                  </h6>
+                  <% if (menuitems[i].itemComment) { %>
+                    <span>"<%= menuitems[i].itemComment %>"</span>
+                    <% } %>
+                      <% if (menuitems[i].addedById==user.id) { %>
+                        <form action="/menuitems/deleteMenuitem/<%=restaurant.id%>/<%=menuitems[i]._id%>?_method=DELETE"
+                          method="POST" class="col-3">
+                          <button type="submit" class="btn btn-link">delete</button>
+                        </form>
+                        <% } %>
+                </li>
+                <% } %>
+            </ul>
+          </div>
+        </div>
+
+
+
       </div>
     </div>
-    <div class="col-3 mt-5">
-      <p><%= restaurant.restaurantName %></p>
-    </div>
-
-    <!-- Section to add a Menuitem to this specific restaurant -->
-    <div class="mt-5">
-      <h2>Add a Menu Item</h2>
-      <form action="/menuitems/createMenuitem/<%=restaurant._id%>" method="POST">
-        <div class="mb-3">
-          <label for="item" class="form-label">Did you order something from the menu? Add it here!</label>
-          <input type="text" class="form-control" id="item" name="item" placeholder="What'd you get?" required>
-          <label for="itemRating">Rating:</label>
-          <select name="itemRating" id="itemRating">
-            <option value="1">1</option>
-            <option value="1.5">1.5</option>
-            <option value="2">2</option>
-            <option value="2.5">2.5</option>
-            <option value="3">3</option>
-            <option value="3.5">3.5</option>
-            <option value="4">4</option>
-            <option value="4.5">4.5</option>
-            <option value="5">5</option>
-          </select>
-          <input type="text" class="form-control" id="itemComment" name="itemComment" placeholder="What'd you think about it?">
-        </div>
-        <button type="submit" class="btn btn-primary">Add</button>
-      </form>
-    </div>
-    <!-- Section to display menu items for this specific restaurant -->
-    <div class="mt-5">
-      <ul>
-        <% for(var i=0; i<menuitems.length; i++) {%>
-          <li class="col-6 justify-content-between mt-5">
-            <h6><%= menuitems[i].addedBy %> ordered "<%= menuitems[i].item%>" and rated it <%= menuitems[i].itemRating %>/5 stars.</h6>
-            <% if (menuitems[i].itemComment) { %>
-              <span>"<%= menuitems[i].itemComment %>"</span>
-            <% } %>
-            <% if (menuitems[i].addedById == user.id) { %>
-              <form action="/menuitems/deleteMenuitem/<%=restaurant.id%>/<%=menuitems[i]._id%>?_method=DELETE" method="POST" class="col-3">
-                <button class="btn btn-outline-danger" type="submit">Delete</button>
-              </form>
-            <% } %>
-          </li>
-          <% } %>
-      </ul>
-    </div>
-
-    <!-- Section to add a comment to this specific restaurant -->
-    <div class="mt-5">
-      <h2>Add a comment</h2>
-      <form action="/restaurantComments/createComment/<%=restaurant._id%>" method="POST">
-        <div class="mb-3">
-          <label for="restaurantComment" class="form-label">Comment</label>
-          <input type="text" class="form-control" id="restaurantComment" name="restaurantComment">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </div>
-    <div class="mt-5">
-      <ul>
-        <% for(var i=0; i<restaurantComments.length; i++) {%>
-          <li class="col-6 justify-content-between mt-5">
-            <%= restaurantComments[i].addedBy %> says: "<%= restaurantComments[i].comment%>"
-            <% if (restaurantComments[i].addedById == user.id) { %>
-              <form action="/restaurantComments/deleteComment/<%=restaurant.id%>/<%=restaurantComments[i]._id%>?_method=DELETE" method="POST" class="col-3">
-                <button class="btn btn-outline-danger" type="submit">Delete</button>
-              </form>
-            <% } %>
-          </li>
-          <% } %>
-      </ul>
-    </div>
-
-    
-
-    <div class="col-6 mt-5">
-      <a class="btn btn-primary" href="/profile">Return to Profile</a>
-      <a class="btn btn-primary" href="/feed">Return to Feed</a>
-    </div>
   </div>
-</div>
 
-<%- include('partials/footer') -%>
+  <%- include('partials/footer') -%>
