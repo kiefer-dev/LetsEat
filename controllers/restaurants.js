@@ -13,7 +13,7 @@ module.exports = {
   },
   getFeed: async (req, res) => {
     try {
-      const restaurants = await Restaurant.find().sort({ createdAt: "desc" }).lean();
+      const restaurants = await Restaurant.find().sort({ restaurantName: "asc" }).lean();
       res.render("feed.ejs", { restaurants: restaurants });
     } catch (err) {
       console.log(err);
