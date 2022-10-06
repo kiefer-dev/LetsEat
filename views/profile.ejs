@@ -1,45 +1,84 @@
 <%- include('partials/header') -%>
-<div class="container">
-  <div class="row mt-5">
+  <div class="container">
+    <div class="row mt-5">
       <div class="col-6">
-          <div>
-              <p><strong>User Name</strong>: <%= user.userName %></p>
-              <p><strong>Email</strong>: <%= user.email %></p>
-              <a href="/logout" class="col-3 btn btn-primary">Logout</a>
-          </div>
-          <div class="mt-5">
-            <h2>Add a Restaurant</h2>
-            <form action="/restaurants/createRestaurant" method="POST">
-              <div class="mb-3">
-                  <label for="restaurantName" class="form-label">Restaurant Name</label>
-                  <input type="text" class="form-control" id="restaurantName" name="restaurantName" required>
-              </div>
-              <div class="mb-3">
-                <label for="menuUrl" class="form-label">Menu URL</label>
-                <input type="text" class="form-control" id="menuUrl" name="menuUrl" required>
-              </div>
-              <div class="mb-3">
-                <label for="tag" class="form-label">Tag for Type of Restaurant</label>
-                <input type="text" class="form-control" id="tag" name="tag">
+        <div>
+          <p><strong>User Name</strong>: <%= user.userName %>
+          </p>
+          <p><strong>Email</strong>: <%= user.email %>
+          </p>
+          <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+        </div>
+        <div class="mt-5">
+          <h2>Add a Restaurant</h2>
+          <form action="/restaurants/createRestaurant" method="POST">
+            <div class="mb-3">
+              <input type="text" class="form-control" id="restaurantName" name="restaurantName" required placeholder="Restaurant Name">
             </div>
-              <button type="submit" class="btn btn-primary" value="Add">Add</button>
-            </form>
-          </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" id="menuUrl" name="menuUrl" required placeholder="Menu URL">
+            </div>
+            <div class="mb-3">
+              <select name="tag" id="tag" class="select w-full max-w-xs">
+                <option disabled selected>Select a tag</option>
+                <option value="American">American</option>
+                <option value="Asian Fusion">Asian Fusion</option>
+                <option value="Bakery">Bakery</option>
+                <option value="Bar/Pub">Bar/Pub</option>
+                <option value="Barbecue">Barbecue</option>
+                <option value="Barcade">Barcade</option>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Brewery">Brewery</option>
+                <option value="Brunch">Brunch</option>
+                <option value="Chinese">Chinese</option>
+                <option value="Creamery">Creamery</option>
+                <option value="Deli">Deli</option>
+                <option value="Diner">Diner</option>
+                <option value="Distillary">Distillary</option>
+                <option value="Fast Food">Fast Food</option>
+                <option value="Greek">Greek</option>
+                <option value="Japanese">Japanese</option>
+                <option value="Thai">Thai</option>
+                <option value="Vegan">Vegan</option>
+                <option value="Vietnamese">Vietnamese</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-secondary" value="Add">Add</button>
+          </form>
+        </div>
       </div>
+
+      <!-- My Restaurants section -->
       <div class="col-6">
-        <ul class="row list-unstyled">
-        <% for(var i=0; i<restaurants.length; i++) {%>
-          <li class="col-6 justify-content-between mt-5">
-            <a href="/restaurants/<%= restaurants[i]._id%>"><%= restaurants[i].restaurantName %></a>
-            <a href="<%= restaurants[i].menuUrl %>" target="_blank">Menu</a>
-          </li>
-        <% } %>
-        </ul>
-        <div class="row justify-content-center mt-5">
-          <a class="btn btn-primary" href="/feed">Return to Feed</a>
-        </div>  
-      </div>  
+
+        <div class="overflow-x-auto flex-column">
+          <span>My Restaurants</span>
+          <table class="table w-full">
+            <!-- head -->
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Tag</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(var i=0; i<restaurants.length; i++) {%>
+                <% if (restaurants[i].addedById==user.id) { %>
+                  <tr onclick="location.href='/restaurants/<%=restaurants[i]._id%>'" class="hover">
+                    <td>
+                      <%= restaurants[i].restaurantName %>
+                    </td>
+                    <td>
+                      <%= restaurants[i].tag %>
+                    </td>
+                  </tr>
+                  <% } %>
+                    <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<%- include('partials/footer') -%>
+  </div>
+  <%- include('partials/footer') -%>
