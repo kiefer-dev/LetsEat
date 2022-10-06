@@ -41,25 +41,11 @@ module.exports = {
         addedById: req.user.id
       });
       console.log("Restaurant has been added!");
-      res.redirect("/profile");
+      res.redirect("/feed");
     } catch (err) {
       console.log(err);
     }
   },
-  // likeRestaurant: async (req, res) => {
-  //   try {
-  //     await Restaurant.findOneAndUpdate(
-  //       { _id: req.params.id },
-  //       {
-  //         $inc: { likes: 1 },
-  //       }
-  //     );
-  //     console.log("Likes +1");
-  //     res.redirect(`/restaurant/${req.params.id}`);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // },
   deleteRestaurant: async (req, res) => {
     try {
       // Delete from db
@@ -67,9 +53,9 @@ module.exports = {
       await RestaurantComment.deleteMany({ restaurantId: req.params.id });
       await Menuitem.deleteMany({ restaurantId: req.params.id });
       console.log("Deleted Restaurant");
-      res.redirect("/profile");
+      res.redirect("/feed");
     } catch (err) {
-      res.redirect("/profile");
+      res.redirect("/feed");
     }
   },
 };
