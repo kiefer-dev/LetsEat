@@ -1,4 +1,5 @@
 <%- include('partials/header') -%>
+
   <div class="container">
     <div class="row justify-content-center mt-5">
       <div class="flex gap-4 grow">
@@ -22,8 +23,9 @@
         <div class="flex flex-col basis-3/6">
           <div>
             <form action="/restaurantComments/createComment/<%=restaurant._id%>" method="POST">
-              <input type="text" placeholder="How was <%=restaurant.restaurantName%>?" class="input input-bordered input-secondary w-full max-w-xs"
-                id="restaurantComment" name="restaurantComment" />
+              <input type="text" placeholder="How was <%=restaurant.restaurantName%>?"
+                class="input input-bordered input-secondary w-full max-w-xs" id="restaurantComment"
+                name="restaurantComment" />
               <button class="btn btn-secondary" type="submit">Post</button>
             </form>
             <!-- Section to display comments about this specific restaurant -->
@@ -56,32 +58,20 @@
                 <input type="text" class="form-control" id="item" name="item" placeholder="What'd you get?" required>
                 <input type="text" class="form-control" id="itemComment" name="itemComment"
                   placeholder="What'd you think about it?">
-
                 <div class="flex">
                   <div class="rating rating-lg rating-half">
                     <input type="radio" name="itemRating" class="rating-hidden" value="0.5" />
-                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-1"
-                      value="0.5" />
-                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-2"
-                      value="1.0" />
-                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-1"
-                      value="1.5" />
-                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-2"
-                      value="2.0" />
-                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-1"
-                      value="2.5" />
-                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-2"
-                      value="3.0" />
-                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-1"
-                      value="3.5" />
-                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-2"
-                      value="4.0" />
-                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-1"
-                      value="4.5" />
-                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-2" value="5.0"
-                      checked />
+                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-1" value="0.5" />
+                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-2" value="1.0" />
+                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-1" value="1.5" />
+                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-2" value="2.0" />
+                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-1" value="2.5" />
+                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-2" value="3.0" />
+                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-1" value="3.5" />
+                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-2" value="4.0" />
+                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-1" value="4.5" />
+                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-2" value="5.0" checked />
                   </div>
-
                 </div>
                 <button type="submit" class="btn btn-secondary">Add</button>
               </div>
@@ -110,9 +100,6 @@
             </ul>
           </div>
         </div>
-
-
-
       </div>
     </div>
   </div>

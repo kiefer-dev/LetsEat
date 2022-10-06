@@ -1,4 +1,5 @@
 <%- include('partials/header') -%>
+
   <div class="container">
     <div class="row mt-5">
       <div class="col-6">
@@ -9,11 +10,14 @@
           </p>
           <a href="/logout" class="col-3 btn btn-primary">Logout</a>
         </div>
+
+        <!-- Section to add a restaurant -->
         <div class="mt-5">
           <h2>Add a Restaurant</h2>
           <form action="/restaurants/createRestaurant" method="POST">
             <div class="mb-3">
-              <input type="text" class="form-control" id="restaurantName" name="restaurantName" required placeholder="Restaurant Name">
+              <input type="text" class="form-control" id="restaurantName" name="restaurantName" required
+                placeholder="Restaurant Name">
             </div>
             <div class="mb-3">
               <input type="text" class="form-control" id="menuUrl" name="menuUrl" required placeholder="Menu URL">
@@ -30,6 +34,7 @@
                 <option value="Breakfast">Breakfast</option>
                 <option value="Brewery">Brewery</option>
                 <option value="Brunch">Brunch</option>
+                <option value="Cafe/Coffee">Cafe/Coffee Shop</option>
                 <option value="Chinese">Chinese</option>
                 <option value="Creamery">Creamery</option>
                 <option value="Deli">Deli</option>
@@ -37,10 +42,14 @@
                 <option value="Distillary">Distillary</option>
                 <option value="Fast Food">Fast Food</option>
                 <option value="Greek">Greek</option>
+                <option value="Italian">Italian</option>
                 <option value="Japanese">Japanese</option>
+                <option value="Pizzeria">Pizzeria</option>
                 <option value="Thai">Thai</option>
+                <option value="UK">UK</option>
                 <option value="Vegan">Vegan</option>
                 <option value="Vietnamese">Vietnamese</option>
+                <option value="Other">Other</option>
               </select>
             </div>
             <button type="submit" class="btn btn-secondary" value="Add">Add</button>
@@ -50,11 +59,9 @@
 
       <!-- My Restaurants section -->
       <div class="col-6">
-
         <div class="overflow-x-auto flex-column">
           <span>My Restaurants</span>
           <table class="table w-full">
-            <!-- head -->
             <thead>
               <tr>
                 <th>Name</th>
@@ -81,4 +88,5 @@
     </div>
   </div>
   </div>
+
   <%- include('partials/footer') -%>

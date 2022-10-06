@@ -5,26 +5,26 @@ const Menuitem = require("../models/Menuitem")
 module.exports = {
   getProfile: async (req, res) => {
     try {
-      const restaurants = await Restaurant.find({ user: req.user.id });
-      res.render("profile.ejs", { restaurants: restaurants, user: req.user });
+      const restaurants = await Restaurant.find({ user: req.user.id }); // Get all the restaurants tied to the logged-in user
+      res.render("profile.ejs", { restaurants: restaurants, user: req.user }); // Pass those restaurants and the user's info to profile.ejs
     } catch (err) {
       console.log(err);
     }
   },
   getFeed: async (req, res) => {
     try {
-      const restaurants = await Restaurant.find().sort({ restaurantName: "asc" }).lean();
-      res.render("feed.ejs", { restaurants: restaurants });
+      const restaurants = await Restaurant.find().sort({ restaurantName: "asc" }).lean(); // Get all of the restaurants in the db, sorted alphabetically
+      res.render("feed.ejs", { restaurants: restaurants }); // Pass those restaurants to the feed view
     } catch (err) {
       console.log(err);
     }
   },
   getRestaurant: async (req, res) => {
     try {
-      const restaurant = await Restaurant.findById(req.params.id);
-      const restaurantComments = await RestaurantComment.find({ restaurantId: req.params.id }).sort({ createdAt: "desc" }).lean();
-      const menuitems = await Menuitem.find({ restaurantId: req.params.id }).sort({ createdAt: "ascending" }).lean();
-      res.render("restaurant.ejs", { restaurant: restaurant, user: req.user, restaurantComments: restaurantComments, menuitems: menuitems });
+      const restaurant = await Restaurant.findById(req.params.id); // Find a specific restaurant
+      const restaurantComments = await RestaurantComment.find({ restaurantId: req.params.id }).sort({ createdAt: "desc" }).lean(); // Find all of the comments tied to that specific restaurant
+      const menuitems = await Menuitem.find({ restaurantId: req.params.id }).sort({ createdAt: "asc" }).lean(); // Get each of the menuitems tied to that specific restaurant
+      res.render("restaurant.ejs", { restaurant: restaurant, user: req.user, restaurantComments: restaurantComments, menuitems: menuitems }); // Pass everything to the restaurant view
     } catch (err) {
       console.log(err);
     }
@@ -48,10 +48,9 @@ module.exports = {
   },
   deleteRestaurant: async (req, res) => {
     try {
-      // Delete from db
-      await Restaurant.deleteOne({ _id: req.params.id });
-      await RestaurantComment.deleteMany({ restaurantId: req.params.id });
-      await Menuitem.deleteMany({ restaurantId: req.params.id });
+      await Restaurant.deleteOne({ _id: req.params.id }); // Delete the restaurant
+      await RestaurantComment.deleteMany({ restaurantId: req.params.id }); // Delete all of the comments tied to that restaurant
+      await Menuitem.deleteMany({ restaurantId: req.params.id }); // Delete all of the menuitems tied to that restaurant
       console.log("Deleted Restaurant");
       res.redirect("/feed");
     } catch (err) {

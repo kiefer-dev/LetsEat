@@ -13,49 +13,33 @@ const restaurantRoutes = require("./routes/restaurants");
 const restaurantCommentRoutes = require("./routes/restaurantComments");
 const menuitemRoutes = require("./routes/menuitems");
 
-//Use .env file in config folder
-require("dotenv").config({ path: "./config/.env" });
+require("dotenv").config({ path: "./config/.env" }); // Use .env file in config folder
+require("./config/passport")(passport); // Passport config
 
-// Passport config
-require("./config/passport")(passport);
+connectDB(); // Connect To Database
 
-//Connect To Database
-connectDB();
-
-//Using EJS for views
-app.set("view engine", "ejs");
-
-//Static Folder
-app.use(express.static("public"));
-
-//Body Parsing
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-//Logging
-app.use(logger("dev"));
-
-//Use forms for put / delete
-app.use(methodOverride("_method"));
+app.set("view engine", "ejs"); // Using EJS for views
+app.use(express.static("public")); // Static Folder
+app.use(express.urlencoded({ extended: true })); // Body Parsing
+app.use(express.json()); // Body Parsing
+app.use(logger("dev")); // Logging
+app.use(methodOverride("_method")); // Use forms to put / delete
 
 // Setup Sessions - stored in MongoDB
 app.use(
   session({
-    secret: "keyboard cat",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({ mongoUrl: process.env.DB_STRING }),
   })
 );
 
-// Passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize()); // Passport middleware
+app.use(passport.session()); // Passport middleware
+app.use(flash()); // Use flash messages for errors, info, ect...
 
-//Use flash messages for errors, info, ect...
-app.use(flash());
-
-//Setup Routes For Which The Server Is Listening
+// Setup routes to listen for
 app.use("/", mainRoutes);
 app.use("/restaurants", restaurantRoutes);
 app.use("/restaurantComments", restaurantCommentRoutes);

@@ -15,7 +15,7 @@ I began by creating a database schema and figuring out the types of data I would
 ## Optimizations
 
 As my largest full-stack application yet, clearly there are some things that can/will be worked on. I still want to improve the structure of the code - having recently learned about the SOLID principles of design, I know there is plenty of room for improvement in my program logic. The UI is fairly lackluster (I'm not a front-end designer) and once I have more experience with it I'd like to implement React components to make everything simpler and smoother, as opposed to the messy EJS that is currently used. 
-The project isn't yet complete - I want to overhaul the comments sections for restaurants/menu items by making them look cleaner, letting users reply to other comments, add images, add hours of operation, etc. All in due time!
+The project isn't yet complete - I want to overhaul the comments sections for restaurants/menu items by making them look cleaner, letting users reply to other comments, add images, add hours of operation, search by name/tag, add multiple tags, etc. All in due time!
 
 ## Lessons Learned:
 

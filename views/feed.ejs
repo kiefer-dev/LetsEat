@@ -1,8 +1,8 @@
 <%- include('partials/header') -%>
 
+  <!-- Table to display restaurant -->
   <div class="container mx-auto">
     <table class="table w-full">
-      <!-- head -->
       <thead>
         <tr>
           <th>Name</th>
@@ -12,26 +12,32 @@
         </tr>
       </thead>
       <tbody>
-        <!-- row 1 -->
         <% for(var i=0; i<restaurants.length; i++) {%>
-        <tr class="hover" onclick="location.href='/restaurants/<%=restaurants[i]._id%>'">
-          <td>
-            <div class="flex items-center space-x-3">
-              <div>
-                <div class="font-bold"><%= restaurants[i].restaurantName%></div>
-                <div class="badge badge-ghost badge-sm text-sm opacity-75"><%= restaurants[i].tag%></div>
+          <tr class="hover" onclick="location.href='/restaurants/<%=restaurants[i]._id%>'">
+            <td>
+              <div class="flex items-center space-x-3">
+                <div>
+                  <div class="font-bold">
+                    <%= restaurants[i].restaurantName%>
+                  </div>
+                  <div class="badge badge-ghost badge-sm text-sm opacity-75">
+                    <%= restaurants[i].tag%>
+                  </div>
+                </div>
               </div>
-            </div>
-          </td>
-          <td>
-            <a class="link link-secondary" href="<%= restaurants[i].menuUrl %>" target="_blank">Link</a>
-          </td>
-          <td><%= restaurants[i].addedBy %></td>
-          <th>
-            <button class="btn btn-ghost btn-xs" onclick="location.href='/restaurants/<%=restaurants[i]._id%>'">details</button>
-          </th>
-        </tr>
-        <% } %>
+            </td>
+            <td>
+              <a class="link link-secondary" href="<%= restaurants[i].menuUrl %>" target="_blank">Link</a>
+            </td>
+            <td>
+              <%= restaurants[i].addedBy %>
+            </td>
+            <th>
+              <button class="btn btn-ghost btn-xs"
+                onclick="location.href='/restaurants/<%=restaurants[i]._id%>'">details</button>
+            </th>
+          </tr>
+          <% } %>
       </tbody>
     </table>
   </div>
