@@ -3,7 +3,7 @@ Let's Eat! is a full-stack web application that allows users to login, create pr
 
 **Link to project:** https://lets-eat-production.up.railway.app
 
-![landing page for Let's Eat!](http://placecorgi.com/1200/650)
+![landing page for Let's Eat!](https://github.com/kiefer-dev/Lets-Eat/blob/main/public/img/letseatlogin.gif?raw=true)
 
 ## How It's Made:
 
