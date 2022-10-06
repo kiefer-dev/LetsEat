@@ -13,7 +13,7 @@
           <%if(restaurant.addedById==user.id){ %>
             <form action="/restaurants/deleteRestaurant/<%= restaurant.id %>?_method=DELETE" method="POST"
               class="col-3">
-              <button class="btn btn-accent fa fa-trash" type="submit"></button>
+              <button class="btn btn-error fa fa-trash" type="submit"></button>
             </form>
             <%}%>
         </div>
@@ -22,14 +22,13 @@
         <div class="flex flex-col basis-3/6">
           <div>
             <form action="/restaurantComments/createComment/<%=restaurant._id%>" method="POST">
-              <input type="text" placeholder="How was <%=restaurant.restaurantName%>?" class="input w-full max-w-xs"
+              <input type="text" placeholder="How was <%=restaurant.restaurantName%>?" class="input input-bordered input-secondary w-full max-w-xs"
                 id="restaurantComment" name="restaurantComment" />
               <button class="btn btn-secondary" type="submit">Post</button>
             </form>
             <!-- Section to display comments about this specific restaurant -->
             <div class="mt-5">
               <ul>
-
                 <% for(var i=0; i<restaurantComments.length; i++) {%>
                   <li class="col-6 justify-content-between mt-5">
                     <%= restaurantComments[i].addedBy %>: "<%= restaurantComments[i].comment%>"
@@ -61,25 +60,25 @@
                 <div class="flex">
                   <div class="rating rating-lg rating-half">
                     <input type="radio" name="itemRating" class="rating-hidden" value="0.5" />
-                    <input type="radio" name="itemRating" class="bg-green-500 mask mask-star-2 mask-half-1"
+                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-1"
                       value="0.5" />
-                    <input type="radio" name="itemRating" class="bg-green-500 mask mask-star-2 mask-half-2"
+                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-2"
                       value="1.0" />
-                    <input type="radio" name="itemRating" class="bg-green-500 mask mask-star-2 mask-half-1"
+                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-1"
                       value="1.5" />
-                    <input type="radio" name="itemRating" class="bg-green-500 mask mask-star-2 mask-half-2"
+                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-2"
                       value="2.0" />
-                    <input type="radio" name="itemRating" class="bg-green-500 mask mask-star-2 mask-half-1"
+                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-1"
                       value="2.5" />
-                    <input type="radio" name="itemRating" class="bg-green-500 mask mask-star-2 mask-half-2"
+                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-2"
                       value="3.0" />
-                    <input type="radio" name="itemRating" class="bg-green-500 mask mask-star-2 mask-half-1"
+                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-1"
                       value="3.5" />
-                    <input type="radio" name="itemRating" class="bg-green-500 mask mask-star-2 mask-half-2"
+                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-2"
                       value="4.0" />
-                    <input type="radio" name="itemRating" class="bg-green-500 mask mask-star-2 mask-half-1"
+                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-1"
                       value="4.5" />
-                    <input type="radio" name="itemRating" class="bg-green-500 mask mask-star-2 mask-half-2" value="5.0"
+                    <input type="radio" name="itemRating" class="mask mask-star-2 mask-half-2" value="5.0"
                       checked />
                   </div>
 
