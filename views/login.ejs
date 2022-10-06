@@ -4,7 +4,8 @@
     <div class="hero-content flex-col lg:flex-row-reverse">
       <div class="text-center lg:text-left">
         <h1 class="text-5xl font-bold">Login</h1>
-        <p class="py-6">If you already have an account, login now<br/>and start keeping track of the best food in your area
+        <p class="py-6">If you already have an account, login now<br />and start keeping track of the best food in your
+          area
           :)</p>
       </div>
       <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -23,28 +24,30 @@
                       </div>
                       <% }) %>
                         <% } %>
-          <form action="/login" method="POST">
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Email</span>
-              </label>
-              <input type="email" class="input input-bordered" id="exampleInputEmail1" aria-describedby="emailHelp"
-                name="email" placeholder="email" />
-            </div>
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Password</span>
-              </label>
-              <input type="password" class="input input-bordered" id="exampleInputPassword1" name="password"
-                placeholder="password" />
-            </div>
-            <div class="form-control mt-6">
-              <button class="btn btn-secondary">Login</button>
-            </div>
-            <label class="label">
-              <a href="/signup" class="label-text-alt link link-hover">...or signup now!</a>
-            </label>
-          </form>
+                          <form action="/login" method="POST">
+                            <div class="flex flex-column items-center">
+                              <div>
+                                <label class="label">
+                                  <span class="label-text">Email</span>
+                                </label>
+                                <input type="email" class="input input-bordered" id="exampleInputEmail1"
+                                  aria-describedby="emailHelp" name="email" placeholder="email" />
+                              </div>
+                              <div>
+                                <label class="label">
+                                  <span class="label-text">Password</span>
+                                </label>
+                                <input type="password" class="input input-bordered" id="exampleInputPassword1"
+                                  name="password" placeholder="password" />
+                              </div>
+                              <div class="mt-6">
+                                <button class="btn btn-secondary">Login</button>
+                              </div>
+                              <label class="label">
+                                <a href="/signup" class="label-text-alt link link-hover">...or signup now!</a>
+                              </label>
+                            </div>
+                          </form>
         </div>
       </div>
     </div>

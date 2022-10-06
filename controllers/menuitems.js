@@ -6,7 +6,6 @@ module.exports = {
         try {
             const menuitem = await Menuitem.findById(req.params.id);
             const restaurant = await Restaurant.find({ restaurantId: menuitem.restaurantId });
-            // const menuitemComments = await MenuitemComment.find({ menuitemId: req.params.id }).sort({ createdAt: "desc" }).lean();
             res.render("menuitem.ejs", { menuitem: menuitem, user: req.user, restaurant: restaurant });
         } catch (err) {
             console.log(err);
