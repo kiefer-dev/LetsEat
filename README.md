@@ -1,7 +1,7 @@
 # Let's Eat! A social eating experience
 Let's Eat! is a full-stack web application that allows users to login, create profiles for their favorite eating/drinking spots, link to their menus, comment & interact with other users, and rate items that they've ordered from those places.
 
-**Link to project:** https://lets-eat-production.up.railway.app
+**Link to project:** https://letseat.cyclic.app
 
 ![landing page for Let's Eat!](https://github.com/kiefer-dev/Lets-Eat/blob/main/public/img/letseatlogin.gif?raw=true)
 
